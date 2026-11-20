@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="Video">
+        <ListPreference
+            android:key="car_orientation"
+            android:title="Car screen shape"
+            android:summary="Detected from your head unit automatically; override only if it's wrong"
+            android:entries="@array/car_orientation_entries"
+            android:entryValues="@array/car_orientation_values"
+            android:defaultValue="landscape" />
+        <ListPreference
+            android:key="video_resolution_mode"
+            android:title="Resolution"
+            android:summary="Match the head unit's reported display, or force a size"
+            android:entries="@array/resolution_mode_entries"
+            android:entryValues="@array/resolution_mode_values"
+            android:defaultValue="auto" />
+        <EditTextPreference
+            android:key="video_resolution_custom_width"
+            android:title="Custom width (px)"
+            android:inputType="number" />
+        <EditTextPreference
+            android:key="video_resolution_custom_height"
+            android:title="Custom height (px)"
+            android:inputType="number" />
+        <ListPreference
+            android:key="video_frame_rate"
+            android:title="Target frame rate"
+            android:entries="@array/frame_rate_entries"
+            android:entryValues="@array/frame_rate_values"
+            android:defaultValue="30" />
+        <EditTextPreference
+            android:key="video_bitrate_kbps"
+            android:title="Video bitrate (kbps)"
+            android:inputType="number"
+            android:defaultValue="4000" />
+        <SwitchPreferenceCompat
+            android:key="video_dpi_auto"
+            android:title="Auto-detect DPI"
+            android:summary="Scale density to the chosen resolution"
+            android:defaultValue="false" />
+        <EditTextPreference
+            android:key="video_dpi_manual"
+            android:title="Manual DPI"
+            android:summary="Only used when auto-detect is off"
+            android:inputType="number"
+            android:defaultValue="160" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Audio">
+        <ListPreference
+            android:key="audio_sample_rate"
+            android:title="Sample rate"
+            android:entries="@array/sample_rate_entries"
+            android:entryValues="@array/sample_rate_values"
+            android:defaultValue="48000" />
+        <SwitchPreferenceCompat
+            android:key="audio_stereo"
+            android:title="Stereo"
+            android:defaultValue="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Android Auto">
+        <Preference
+            android:key="car_profiles"
+            android:title="Car profiles"
+            android:summary="Save/load video and AA settings per car (Proton Saga 2026 built-in)" />
+        <SwitchPreferenceCompat
+            android:key="video_downscale_720p"
+            android:title="Downscale resolution"
+            android:summary="Send AA a 720p frame instead of 1080p -- smoother and clearer on car screens."
+            android:defaultValue="true" />
+        <ListPreference
+            android:key="aa_fill_mode"
+            android:title="Car screen fill"
+            android:summary="AA has no resolution matching this car's screen shape, so one of these is unavoidable"
+            android:entries="@array/aa_fill_mode_entries"
+            android:entryValues="@array/aa_fill_mode_values"
+            android:defaultValue="fill" />
+        <ListPreference
+            android:key="aa_audio_route"
+            android:title="Mic / speaker for Android Auto"
+            android:summary="Which device handles AA voice/media audio in and out"
+            android:entries="@array/aa_audio_route_entries"
+            android:entryValues="@array/aa_audio_route_values"
+            android:defaultValue="phone_direct" />
+        <SwitchPreferenceCompat
+            android:key="aa_auto_crop"
+            android:title="Auto-crop to car screen shape"
+            android:summary="Computes the AA video crop automatically from this car's real screen size when in Fit mode."
+            android:defaultValue="true" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Connection">
+        <SwitchPreferenceCompat
+            android:key="auto_reconnect_usb"
+            android:title="Auto-reconnect"
+            android:summary="Reconnect automatically if the USB link drops"
+            android:defaultValue="true" />
+        <ListPreference
+            android:key="usb_role_override"
+            android:title="USB role override (debug)"
+            android:summary="Confirmed: phone is the USB accessory, head unit is the host. Only override for testing."
+            android:entries="@array/usb_role_entries"
+            android:entryValues="@array/usb_role_values"
+            android:defaultValue="auto" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Updates">
+        <SwitchPreferenceCompat
+            android:key="update_auto_check"
+            android:title="Check automatically"
+            android:summary="Check once per app launch; only notifies when something newer actually exists"
+            android:defaultValue="true" />
+        <Preference
+            android:key="check_for_updates_now"
+            android:title="Check for updates now" />
+    </PreferenceCategory>
+
+    <PreferenceCategory android:title="Debug">
+        <SwitchPreferenceCompat
+            android:key="debug_verbose_logging"
+            android:title="Protocol sniffer"
+            android:summary="Log every CarbitLink/Android Auto control message with a hex preview, including video/audio frames"
+            android:defaultValue="false" />
+        <SwitchPreferenceCompat
+            android:key="debug_overlay"
+            android:title="On-screen debug overlay"
+            android:summary="Show fps/bitrate/drops over the mirror, AA session, and this app's own screen"
+            android:defaultValue="false" />
+        <SwitchPreferenceCompat
+            android:key="auto_save_crash_log"
+            android:title="Auto-save crash log to Downloads"
+            android:summary="On a crash, save the current log straight to Downloads automatically"
+            android:defaultValue="true" />
+        <Preference
+            android:key="developer_tools"
+            android:title="Developer tools"
+            android:summary="Log export, Car Preview" />
+    </PreferenceCategory>
+
+</androidx.preference.PreferenceScreen>
